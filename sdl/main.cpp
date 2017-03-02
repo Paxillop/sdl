@@ -9,13 +9,15 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	
 
 	SDL_Init(SDL_INIT_EVERYTHING);
-
+	
 	SDL_CreateWindowAndRenderer(640, 480, SDL_WINDOW_RESIZABLE, &window, &renderer);
-
+	for (;;) {
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
 	SDL_RenderClear(renderer);
@@ -35,8 +37,17 @@ int main(int argc, char* argv[])
 	SDL_RenderPresent(renderer);
 
 
-	for (;;)
-	{
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			if (state[SDL_SCANCODE_ESCAPE]) {
+				
+					
+				SDL_Quit();
+
+			}
+		}
+	
 
 	}
 
@@ -44,6 +55,6 @@ int main(int argc, char* argv[])
 
 
 
-
+	
 	return(EXIT_SUCCESS);
 }
